@@ -11,6 +11,8 @@ build-parameters:
       commands:
         - npm ci
         - npx cds build --production
+        - npx rimraf gen/db/src/gen/data 
+        - npx rimraf gen/db/src/gen/csv
 modules:
   - name: Learning-srv
     type: nodejs
@@ -21,6 +23,7 @@ modules:
       readiness-health-check-http-endpoint: /health
     build-parameters:
       builder: npm
+      ignore: ["node_modules/"]
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
@@ -36,6 +39,7 @@ modules:
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
+      ignore: ["node_modules/"]
     requires:
       - name: Learning-db
       - name: Learning-destination
