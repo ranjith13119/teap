@@ -1,0 +1,128 @@
+@server = http://localhost:4004
+@auth = Authorization: Basic alice:
+
+
+### Books
+# @name Books_GET
+GET {{server}}/odata/v4/catalog/Books
+{{auth}}
+
+
+### Books
+# @name Books_POST
+POST {{server}}/odata/v4/catalog/Books
+Content-Type: application/json
+{{auth}}
+
+{
+  "ID": 13053769,
+  "title": "title-13053769",
+  "descr": "descr-13053769",
+  "genre": {
+    "ID": 21639360
+  },
+  "stock": 99,
+  "price": 22.68,
+  "currency": {
+    "code": "780"
+  },
+  "author": {
+    "ID": 3138805
+  }
+}
+
+
+### Books
+# @name Books_PATCH
+PATCH {{server}}/odata/v4/catalog/Books/13053769
+Content-Type: application/json
+{{auth}}
+
+{
+  "ID": 13053769,
+  "title": "title-13053769",
+  "descr": "descr-13053769",
+  "genre": {
+    "ID": 21639360
+  },
+  "stock": 99,
+  "price": 22.68,
+  "currency": {
+    "code": "780"
+  },
+  "author": {
+    "ID": 3138805
+  }
+}
+
+
+### Books
+# @name Books_DELETE
+DELETE {{server}}/odata/v4/catalog/Books/13053769
+Content-Type: application/json
+{{auth}}
+
+
+### Authors
+# @name Authors_GET
+GET {{server}}/odata/v4/catalog/Authors
+{{auth}}
+
+
+### Authors
+# @name Authors_POST
+POST {{server}}/odata/v4/catalog/Authors
+Content-Type: application/json
+{{auth}}
+
+{
+  "ID": 3138805,
+  "name": "name-3138805",
+  "dateOfBirth": "2006-09-11",
+  "dateOfDeath": "2007-03-11",
+  "placeOfBirth": "placeOfBirth-3138805",
+  "placeOfDeath": "placeOfDeath-3138805",
+  "createdAt": "2016-10-24T00:00:00.000Z",
+  "createdBy": "createdBy.1v9x1@example.org",
+  "modifiedAt": "2014-11-12T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.1v9x1@example.com"
+}
+
+
+### Authors
+# @name Authors_PATCH
+PATCH {{server}}/odata/v4/catalog/Authors/3138805
+Content-Type: application/json
+{{auth}}
+
+{
+  "ID": 3138805,
+  "name": "name-3138805",
+  "dateOfBirth": "2006-09-11",
+  "dateOfDeath": "2007-03-11",
+  "placeOfBirth": "placeOfBirth-3138805",
+  "placeOfDeath": "placeOfDeath-3138805",
+  "createdAt": "2016-10-24T00:00:00.000Z",
+  "createdBy": "createdBy.1v9x1@example.org",
+  "modifiedAt": "2014-11-12T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.1v9x1@example.com"
+}
+
+
+### Authors
+# @name Authors_DELETE
+DELETE {{server}}/odata/v4/catalog/Authors/3138805
+Content-Type: application/json
+{{auth}}
+
+
+### Genres
+# @name Genres_GET
+GET {{server}}/odata/v4/catalog/Genres
+{{auth}}
+
+
+### Currencies
+# @name Currencies_GET
+GET {{server}}/odata/v4/catalog/Currencies
+{{auth}}

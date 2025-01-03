@@ -1,0 +1,94 @@
+{
+  "name": "Learning",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/audit-logging": ">=0",
+    "@cap-js/hana": "^1",
+    "@cap-js/telemetry": "^1.1.2",
+    "@sap/cds": "^8",
+    "@sap/hana-client": "^2.23.24",
+    "@sap/xssec": "^4",
+    "express": "^4",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.7.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "connectivity": true,
+      "destinations": true,
+      "html5-repo": true,
+      "application-logging": true,
+      "db": {
+        "[development]": {
+          "kind": "sql"
+        },
+        "[production]": {
+          "kind": "hana-cloud",
+          "pool": {
+            "acquireTimeoutMillis": 5000,
+            "min": 0,
+            "max": 100,
+            "fifo": true
+          }
+        }
+      },
+      "[production]": {
+        "uaa": {
+          "kind": "xsuaa"
+        }
+      },
+      "auth": {
+        "[development]": {
+          "strategy": "mock",
+          "users": {
+            "alice": {
+              "roles": [
+                "Admin",
+                "Viewer"
+              ]
+            },
+            "julie": {
+              "roles": [
+                "Viewer"
+              ]
+            },
+            "bob": {
+              "roles": [
+                "Viewer"
+              ]
+            }
+          }
+        },
+        "[production]": {
+          "strategy": "xsuaa"
+        }
+      },
+      "query": {
+        "limit": {
+          "default": 20,
+          "max": 100
+        }
+      }
+    },
+    "log": {
+      "levels": {
+        "sql": "debug",
+        "cds": "info"
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  }
+}
